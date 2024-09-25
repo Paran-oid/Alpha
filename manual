@@ -1,0 +1,28 @@
+### declaring a variable ###
+
+- types:
+
+num
+str
+bool
+
+- variable:
+
+[type] [name] = [value];
+--> semi-colon is a must
+
+- comparison and arithmetic operations:
+
+like in c++
+
+
+
+### using the console ###
+
+- display a variable
+
+print(arg);
+
+- display my name
+
+printcreator();
