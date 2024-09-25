@@ -41,29 +41,50 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target Token
+
+
+#############################################
+# Order-only phony target for Token
+
+build cmake_object_order_depends_target_Token: phony || .
+
+build CMakeFiles/Token.dir/Token/tokenizer.cpp.o: CXX_COMPILER__Token_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/Token/tokenizer.cpp || cmake_object_order_depends_target_Token
+  DEP_FILE = CMakeFiles/Token.dir/Token/tokenizer.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
+  OBJECT_DIR = CMakeFiles/Token.dir
+  OBJECT_FILE_DIR = CMakeFiles/Token.dir/Token
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Token
+
+
+#############################################
+# Link the static library libToken.a
+
+build libToken.a: CXX_STATIC_LIBRARY_LINKER__Token_Debug CMakeFiles/Token.dir/Token/tokenizer.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles/Token.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libToken.a
+  TARGET_PDB = Token.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target alpha_Interpreter
 
 
 #############################################
 # Order-only phony target for alpha_Interpreter
 
-build cmake_object_order_depends_target_alpha_Interpreter: phony || .
+build cmake_object_order_depends_target_alpha_Interpreter: phony || cmake_object_order_depends_target_Token
 
 build CMakeFiles/alpha_Interpreter.dir/main.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/main.cpp || cmake_object_order_depends_target_alpha_Interpreter
   DEP_FILE = CMakeFiles/alpha_Interpreter.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
-  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir
-
-build CMakeFiles/alpha_Interpreter.dir/tokenizer.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/tokenizer.cpp || cmake_object_order_depends_target_alpha_Interpreter
-  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/tokenizer.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
-  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir
-
-build CMakeFiles/alpha_Interpreter.dir/AST.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/AST.cpp || cmake_object_order_depends_target_alpha_Interpreter
-  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/AST.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
   OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir
 
@@ -75,8 +96,9 @@ build CMakeFiles/alpha_Interpreter.dir/AST.cpp.o: CXX_COMPILER__alpha_Interprete
 #############################################
 # Link the executable alpha_Interpreter
 
-build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o CMakeFiles/alpha_Interpreter.dir/tokenizer.cpp.o CMakeFiles/alpha_Interpreter.dir/AST.cpp.o
+build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o | libToken.a || libToken.a
   FLAGS = -g
+  LINK_LIBRARIES = libToken.a
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -109,6 +131,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build Token: phony libToken.a
+
 # =============================================================================
 # Folder targets.
 
@@ -117,7 +141,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/aziz/Documents/Programming/Projects/alpha Interpreter/cmake-build-debug
 
-build all: phony alpha_Interpreter
+build all: phony libToken.a alpha_Interpreter
 
 # =============================================================================
 # Built-in targets

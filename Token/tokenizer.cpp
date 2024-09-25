@@ -2,18 +2,7 @@
 #include <vector>
 #include <string>
 #include <cctype>
-
-
-//first we define our types
-enum TokenType {NUMBER,PLUS,MINUS,STAR,SLASH,LPAREN,RPAREN,END};
-
-
-//we create our token
-struct Token
-{
-    TokenType type;
-    std::string value;
-};
+#include <tokenizer.h>
 
 //we initiate our tokenize method
 std::vector<Token> tokenize(const std::string& input)
