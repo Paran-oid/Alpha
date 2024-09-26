@@ -12,7 +12,9 @@ include_directories(
 add_library(Token ${CMAKE_SOURCE_DIR}/Token/tokenizer.cpp)
 
 set(SOURCES
-    main.cpp)
+    main.cpp
+        AST/AST.cpp
+        AST/AST.h)
 
 # we set all our sources
 add_executable(alpha_Interpreter ${SOURCES}

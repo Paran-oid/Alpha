@@ -4,5 +4,7 @@
 int main()
 {
     std::string code = "1 + 1";
-    tokenize(code);
+    std::vector<Token> tokens = tokenize(code);
+
+    std::cout << "works!" << std::endl;
 }

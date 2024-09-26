@@ -4,7 +4,7 @@
 #include <cctype>
 #include <tokenizer.h>
 
-//we initiate our tokenize method
+//we initiate our tokenize method(lexer)
 std::vector<Token> tokenize(const std::string& input)
 {
     std::vector<Token> tokens;

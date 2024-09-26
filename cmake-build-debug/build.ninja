@@ -88,6 +88,13 @@ build CMakeFiles/alpha_Interpreter.dir/main.cpp.o: CXX_COMPILER__alpha_Interpret
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
   OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir
 
+build CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/AST/AST.cpp || cmake_object_order_depends_target_alpha_Interpreter
+  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
+  OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
+  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir/AST
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target alpha_Interpreter
@@ -96,7 +103,7 @@ build CMakeFiles/alpha_Interpreter.dir/main.cpp.o: CXX_COMPILER__alpha_Interpret
 #############################################
 # Link the executable alpha_Interpreter
 
-build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o | libToken.a || libToken.a
+build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o | libToken.a || libToken.a
   FLAGS = -g
   LINK_LIBRARIES = libToken.a
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
