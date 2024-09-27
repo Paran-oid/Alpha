@@ -39,39 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/cmake-build-debug/
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target Token
-
-
-#############################################
-# Order-only phony target for Token
-
-build cmake_object_order_depends_target_Token: phony || .
-
-build CMakeFiles/Token.dir/Token/tokenizer.cpp.o: CXX_COMPILER__Token_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/Token/tokenizer.cpp || cmake_object_order_depends_target_Token
-  DEP_FILE = CMakeFiles/Token.dir/Token/tokenizer.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
-  OBJECT_DIR = CMakeFiles/Token.dir
-  OBJECT_FILE_DIR = CMakeFiles/Token.dir/Token
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target Token
-
-
-#############################################
-# Link the static library libToken.a
-
-build libToken.a: CXX_STATIC_LIBRARY_LINKER__Token_Debug CMakeFiles/Token.dir/Token/tokenizer.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles/Token.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = libToken.a
-  TARGET_PDB = Token.a.dbg
-
+cmake_ninja_workdir = /home/aziz/Documents/Programming/Projects/alpha$ interpreter/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target alpha_Interpreter
 
@@ -79,21 +47,25 @@ build libToken.a: CXX_STATIC_LIBRARY_LINKER__Token_Debug CMakeFiles/Token.dir/To
 #############################################
 # Order-only phony target for alpha_Interpreter
 
-build cmake_object_order_depends_target_alpha_Interpreter: phony || cmake_object_order_depends_target_Token
+build cmake_object_order_depends_target_alpha_Interpreter: phony || .
 
-build CMakeFiles/alpha_Interpreter.dir/main.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/main.cpp || cmake_object_order_depends_target_alpha_Interpreter
+build CMakeFiles/alpha_Interpreter.dir/main.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/main.cpp || cmake_object_order_depends_target_alpha_Interpreter
   DEP_FILE = CMakeFiles/alpha_Interpreter.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
   OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir
 
-build CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/AST/AST.cpp || cmake_object_order_depends_target_alpha_Interpreter
-  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o.d
+build CMakeFiles/alpha_Interpreter.dir/Token/Token.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/Token/Token.cpp || cmake_object_order_depends_target_alpha_Interpreter
+  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/Token/Token.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha Interpreter/Token"
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
-  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir/AST
+  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir/Token
+
+build CMakeFiles/alpha_Interpreter.dir/Interpreter/Interpreter.cpp.o: CXX_COMPILER__alpha_Interpreter_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/Interpreter/Interpreter.cpp || cmake_object_order_depends_target_alpha_Interpreter
+  DEP_FILE = CMakeFiles/alpha_Interpreter.dir/Interpreter/Interpreter.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
+  OBJECT_FILE_DIR = CMakeFiles/alpha_Interpreter.dir/Interpreter
 
 
 # =============================================================================
@@ -103,9 +75,8 @@ build CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o: CXX_COMPILER__alpha_Interp
 #############################################
 # Link the executable alpha_Interpreter
 
-build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o CMakeFiles/alpha_Interpreter.dir/AST/AST.cpp.o | libToken.a || libToken.a
+build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFiles/alpha_Interpreter.dir/main.cpp.o CMakeFiles/alpha_Interpreter.dir/Token/Token.cpp.o CMakeFiles/alpha_Interpreter.dir/Interpreter/Interpreter.cpp.o
   FLAGS = -g
-  LINK_LIBRARIES = libToken.a
   OBJECT_DIR = CMakeFiles/alpha_Interpreter.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -117,7 +88,7 @@ build alpha_Interpreter: CXX_EXECUTABLE_LINKER__alpha_Interpreter_Debug CMakeFil
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/aziz/Documents/Programming/Projects/alpha Interpreter/cmake-build-debug" && /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd "/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug" && /snap/clion/296/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -128,7 +99,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/aziz/Documents/Programming/Projects/alpha Interpreter/cmake-build-debug" && /app/extra/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S"/home/aziz/Documents/Programming/Projects/alpha Interpreter" -B"/home/aziz/Documents/Programming/Projects/alpha Interpreter/cmake-build-debug"
+  COMMAND = cd "/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug" && /snap/clion/296/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S"/home/aziz/Documents/Programming/Projects/alpha interpreter" -B"/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -138,17 +109,15 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Token: phony libToken.a
-
 # =============================================================================
 # Folder targets.
 
 # =============================================================================
 
 #############################################
-# Folder: /home/aziz/Documents/Programming/Projects/alpha Interpreter/cmake-build-debug
+# Folder: /home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug
 
-build all: phony libToken.a alpha_Interpreter
+build all: phony alpha_Interpreter
 
 # =============================================================================
 # Built-in targets
@@ -157,14 +126,14 @@ build all: phony libToken.a alpha_Interpreter
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-CXX.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/aziz/Documents/Programming/Projects/alpha$ interpreter/CMakeLists.txt /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-CXX.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /app/extra/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /home/aziz/Documents/Programming/Projects/alpha$ Interpreter/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake: phony
+build /home/aziz/Documents/Programming/Projects/alpha$ interpreter/CMakeLists.txt /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /snap/clion/296/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake: phony
 
 
 #############################################
