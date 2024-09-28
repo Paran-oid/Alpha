@@ -15,15 +15,21 @@ public:
     explicit Interpreter(const std::string& text) : m_text(text) , m_pos(0){
         m_text = text;
     }
-    Token get_next_token();
-    void eat(TokenType type);
     std::string expr();
+    Token get_next_token();
+    int integer();
+
+    void advance();
+    void skip_whitespace();
+    void eat(TokenType type);
     void error();
 
 private:
     Token m_curr_token = {END, "END"};
     std::string m_text;
+
     int m_pos;
+    char m_curr_char {m_text[m_pos]};
 };
 
 #endif //INTERPRETER_H
