@@ -18,10 +18,11 @@ public:
     std::string expr();
     Token get_next_token();
     int integer();
+    std::string term();
 
     void advance();
-    void skip_whitespace();
     void eat(TokenType type);
+    void skip_whitespace();
     void error();
 
 private:

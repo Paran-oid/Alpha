@@ -4,6 +4,9 @@
 
 #include "Interpreter.h"
 
+#include <algorithm>
+#include <vector>
+
 void Interpreter::error() {
     throw std::runtime_error("error parsing");
 }
@@ -75,51 +78,39 @@ void Interpreter::eat(TokenType type) {
     }
 }
 
+std::string Interpreter::term() {
+    Token token = m_curr_token;
+    eat(INTEGER);
+    return token.value();
+}
+
 
 std::string Interpreter::expr() {
-    bool isRunning = true;
-    auto result = 0;
-
     m_curr_token = get_next_token();
-    Token left = m_curr_token;
-    eat(INTEGER);
+    auto result = term();
+    int val = std::stoi(result);
 
-    while(true) {
-
-        Token op = m_curr_token;
-        if(m_curr_token.type() == PLUS) eat(PLUS);
-        else if(m_curr_token.type() == MINUS) eat(MINUS);
-        else if(m_curr_token.type() == MULTI) eat(MULTI);
-        else if(m_curr_token.type() == DIVIDE) eat(DIVIDE);
-        else break;
-
-        Token right = m_curr_token;
-        eat(INTEGER);
-
-
-        const auto leftval = std::stod(left.value());
-        const auto rightval = std::stoi(right.value());
-
-        switch(op.type()) {
-            case PLUS:
-                result = leftval + rightval;
-            break;
-            case MINUS:
-                result = leftval - rightval;
-            break;
-            case MULTI:
-                result = leftval * rightval;
-            break;
-            case DIVIDE:
-                result = leftval / rightval;
-            break;
-            default: ;
+    std::vector<TokenType> operators{PLUS, MINUS, MULTI, DIVIDE};
+    while(std::find(operators.begin(), operators.end(), m_curr_token.type()) != operators.end()) {
+        if(m_curr_token.type() == PLUS) {
+            eat(PLUS);
+            val += std::stoi(term());
         }
-
-        left.setValue(std::to_string(result));
-        right.setValue("");
+        else if(m_curr_token.type() == MINUS) {
+            eat(MINUS);
+            val -= std::stoi(term());
+        }
+        else if(m_curr_token.type() == MULTI) {
+            eat(MULTI);
+            val *= std::stoi(term());
+        }
+        else if(m_curr_token.type() == DIVIDE) {
+            eat(DIVIDE);
+            val /= std::stoi(term());
+        } else break;
     }
 
-    return std::to_string(result);
+    result = std::to_string(val);
+    return result;
 }
 
