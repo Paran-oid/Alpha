@@ -1,3 +1,0 @@
-/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug/CMakeFiles/Alpha.dir
-/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aziz/Documents/Programming/Projects/alpha interpreter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
