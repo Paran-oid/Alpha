@@ -1,36 +1,40 @@
 //
-// Created by aziz on 9/27/24.
+// Created by aziz on 9/30/24.
 //
 
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
-#include <optional>
 #include <string>
 
 #include "../Token/Token.h"
 
+namespace interpreter {
+    class Interpreter {
+    public:
+        Interpreter(const std::string &text):
+            m_text{text}, m_pos{0}, m_curr_char{text[0]}
+        {}
 
-class Interpreter {
-public:
-    explicit Interpreter(const std::string& text) : m_text(text) , m_pos(0){
-        m_text = text;
-    }
-    std::string expr();
-    Token get_next_token();
-    int integer();
-    std::string term();
 
-    void advance();
-    void eat(TokenType type);
-    void skip_whitespace();
-    void error();
+        Token next_token();
+        std::string expr();
 
-private:
-    Token m_curr_token = {END, "END"};
-    std::string m_text;
+        void skip_whitespace();
+        std::string integer();
+        std::string term();
 
-    int m_pos;
-    char m_curr_char {m_text[m_pos]};
-};
+        void eat(TokenType type);
+        void advance();
+        static void error();
+
+
+    private:
+        char m_curr_char{};
+        std::string m_text{};
+        Token m_current_token{TokenType::END, "END"};
+        int m_pos;
+    };
+
+}
 
 #endif //INTERPRETER_H

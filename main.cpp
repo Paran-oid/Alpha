@@ -1,27 +1,21 @@
 #include <iostream>
-#include <stdexcept>
 
 #include "Interpreter/Interpreter.h"
 
-int main()
-{
-    std::string text;
-
-    while (true) {
-        std::cout << "alpha> ";
-        std::getline(std::cin, text);
-        if (text.empty()) {
-            continue;
-        }
-
+int main() {
+    while(true) {
         try {
-            Interpreter interpreter(text);
-            std::string result = interpreter.expr();
-            std::cout << result << std::endl;
-        } catch (const std::exception& e) {
-            std::cerr << "Error: " << e.what() << std::endl;
+            std::cout << "alpha>";
+            std::string text;
+            std::cin >> text;
+            if(text.empty()) continue;
+            interpreter::Interpreter interpreter(text);
+            std::string res = interpreter.expr();
+            std::cout << res << std::endl;
+        }
+        catch(std::exception e) {
+            std::cout << "Error:" << e.what() << std::endl;
         }
     }
-    return 0;
 }
 

@@ -1,116 +1,101 @@
 //
-// Created by aziz on 9/27/24.
+// Created by aziz on 9/30/24.
 //
 
 #include "Interpreter.h"
 
-#include <algorithm>
-#include <vector>
+#include <iostream>
 
-void Interpreter::error() {
-    throw std::runtime_error("error parsing");
-}
+namespace interpreter {
 
-void Interpreter::advance() {
-    ++m_pos;
-    if(m_pos > m_text.length()) {
-        m_curr_char = '\0';
+    //CHECK TYPES
+    void Interpreter::skip_whitespace() {
+        while(std::isspace(m_curr_char) && m_curr_char != '\0') advance();
     }
-    else {
-        m_curr_char = m_text[m_pos];
+    std::string Interpreter::integer() {
+        std::string result;
+        while(std::isdigit(m_curr_char) && m_curr_char != '\0') {
+            result+=m_curr_char;
+            advance();
+        }
+        return result;
     }
-}
 
-void Interpreter::skip_whitespace() {
-    while(std::isspace(m_curr_char) && m_curr_char != '\0') {
-        advance();
-    }
-}
-
-int Interpreter::integer() {
-    std::string result;
-    while(m_curr_char != '\0' && std::isdigit(m_curr_char)) {
-        result += m_curr_char;
-        advance();
-    }
-    return std::stoi(result);
-}
-
-
-Token Interpreter::get_next_token() {
-    while(m_curr_char != '\0') {
-        if (std::isspace(m_curr_char)) {
-            skip_whitespace();
-            continue;
-        }
-        else if (std::isdigit(m_curr_char)) {
-            return Token{INTEGER, std::to_string(integer())};
-        }
-        else if (m_curr_char == '+') {
-            advance();
-            return Token{PLUS, "+"};
-        }
-        else if (m_curr_char == '-') {
-            advance();
-            return Token{MINUS, "-"};
-        }
-        else if (m_curr_char == '*') {
-            advance();
-            return Token{MULTI, "*"};
-        }
-        else if (m_curr_char == '/') {
-            advance();
-            return Token{DIVIDE, "/"};
+    //UPDATE VALUES
+    void Interpreter::advance() {
+        m_pos++;
+        if(m_pos > m_text.length()) {
+            m_curr_char = '\0';
         }
         else {
+            m_curr_char = m_text[m_pos];
+        }
+    }
+    void Interpreter::eat(TokenType type) {
+        if(m_current_token.type == type) {
+            m_current_token = next_token();
+        }
+    }
+
+    //LEXER
+    Token Interpreter::next_token() {
+        while(m_curr_char != '\0') {
+            if(std::isdigit(m_curr_char)) {
+                return {TokenType::INTEGER, integer()};
+            }
+            if(std::isspace(m_curr_char)) {
+                skip_whitespace();
+                continue;
+            }
+            if(m_curr_char == '+') {
+                advance();
+                return {TokenType::PLUS, "+"};
+            }
+            if(m_curr_char == '-') {
+                advance();
+                return {TokenType::MINUS, "-"};
+            }
+            if(m_curr_char == '*') {
+                advance();
+                return {TokenType::MULTIP, "*"};
+            }
+            if(m_curr_char == '/') {
+                advance();
+                return {TokenType::DIVID, "/"};
+            }
             error();
+
         }
-    }
-    return Token{END, ""};
-}
-
-void Interpreter::eat(TokenType type) {
-    if(m_curr_token.type() == type) {
-        m_curr_token = get_next_token();
-    }
-    else {
-        error();
-    }
-}
-
-std::string Interpreter::term() {
-    Token token = m_curr_token;
-    eat(INTEGER);
-    return token.value();
-}
-
-
-std::string Interpreter::expr() {
-    m_curr_token = get_next_token();
-    auto result = term();
-    int val = std::stoi(result);
-
-    std::vector<TokenType> operators{PLUS, MINUS, MULTI, DIVIDE};
-    while(std::find(operators.begin(), operators.end(), m_curr_token.type()) != operators.end()) {
-        if(m_curr_token.type() == PLUS) {
-            eat(PLUS);
-            val += std::stoi(term());
-        }
-        else if(m_curr_token.type() == MINUS) {
-            eat(MINUS);
-            val -= std::stoi(term());
-        }
-        else if(m_curr_token.type() == MULTI) {
-            eat(MULTI);
-            val *= std::stoi(term());
-        }
-        else if(m_curr_token.type() == DIVIDE) {
-            eat(DIVIDE);
-            val /= std::stoi(term());
-        } else break;
+        return {TokenType::END, "END"};
     }
 
-    result = std::to_string(val);
-    return result;
-}
+    //OPERATIONS
+    std::string Interpreter::term() {
+        Token token = m_current_token;
+        eat(TokenType::INTEGER);
+        return token.value;
+    }
 
+    //INTERPRETER
+    std::string Interpreter::expr() {
+        m_current_token = next_token();
+        int result = std::stoi(term());
+        while(m_current_token.type == TokenType::PLUS || m_current_token.type == TokenType::MINUS) {
+            Token token = m_current_token;
+            if(token.type == TokenType::PLUS) {
+                eat(TokenType::PLUS);
+                result += std::stoi(term());
+            }
+            else if(token.type == TokenType::MINUS) {
+                eat(TokenType::MINUS);
+                result -= std::stoi(term());
+            }
+        }
+        return std::to_string(result);
+    }
+
+    void Interpreter::error() {
+        throw std::runtime_error("Parsing error");
+    }
+
+}
