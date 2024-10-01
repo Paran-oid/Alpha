@@ -11,7 +11,9 @@ enum class TokenType {
     MINUS,
     MULTIP,
     DIVID,
-    END
+    END,
+    LPAREN,
+    RPAREN
 };
 
 #endif //TOKENTYPE_H

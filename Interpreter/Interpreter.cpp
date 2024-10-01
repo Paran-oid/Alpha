@@ -21,8 +21,16 @@ namespace interpreter {
     //OPERATIONS
     std::string Interpreter::factor() {
         Token token = m_current_token;
-        eat(TokenType::INTEGER);
-        return token.value;
+        if(m_current_token.type == TokenType::INTEGER) {
+            eat(TokenType::INTEGER);
+            return token.value;
+        }
+        else if(m_current_token.type == TokenType::LPAREN) {
+            eat(TokenType::LPAREN);
+            std::string res = expr();
+            eat(TokenType::RPAREN);
+            return res;
+        }
     }
     std::string Interpreter::term() {
 
@@ -52,8 +60,6 @@ namespace interpreter {
 
     //INTERPRETER
     std::string Interpreter::expr() {
-        m_current_token = m_lexer.get_next_token();
-
         int result = std::stoi(term());
 
         while(m_current_token.type == TokenType::PLUS

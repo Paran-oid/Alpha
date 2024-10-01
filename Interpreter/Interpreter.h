@@ -7,12 +7,13 @@
 #include <string>
 
 #include "Token.h"
-#include "../Lexer/Lexer.h"
+#include "Lexer.h"
 
 namespace interpreter {
     class Interpreter {
     public:
-        explicit Interpreter(Lexer& lexer): m_lexer{lexer}{
+        explicit Interpreter(interpreter::Lexer& lexer): m_lexer{lexer}{
+            m_current_token = m_lexer.get_next_token();
         }
 
         std::string expr();

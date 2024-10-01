@@ -46,6 +46,8 @@ namespace interpreter {
                 case '-': advance(); return {TokenType::MINUS, "-"};
                 case '*': advance(); return {TokenType::MULTIP, "*"};
                 case '/': advance(); return {TokenType::DIVID, "/"};
+                case '(': advance(); return {TokenType::LPAREN, "("};
+                case ')': advance(); return {TokenType::RPAREN, ")"};
                 default: Error::throw_error(ERR_PARSING);
             }
         }
