@@ -6,33 +6,25 @@
 #define INTERPRETER_H
 #include <string>
 
-#include "../Token/Token.h"
+#include "Token.h"
+#include "../Lexer/Lexer.h"
 
 namespace interpreter {
     class Interpreter {
     public:
-        Interpreter(const std::string &text):
-            m_text{text}, m_pos{0}, m_curr_char{text[0]}
-        {}
+        explicit Interpreter(Lexer& lexer): m_lexer{lexer}{
+        }
 
-
-        Token next_token();
         std::string expr();
 
-        void skip_whitespace();
-        std::string integer();
         std::string term();
+        std::string factor();
 
         void eat(TokenType type);
-        void advance();
-        static void error();
-
 
     private:
-        char m_curr_char{};
-        std::string m_text{};
-        Token m_current_token{TokenType::END, "END"};
-        int m_pos;
+        Lexer m_lexer;
+        Token m_current_token{};
     };
 
 }

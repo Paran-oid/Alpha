@@ -6,81 +6,58 @@
 
 #include <iostream>
 
+#include "Error.h"
+
 namespace interpreter {
-
-    //CHECK TYPES
-    void Interpreter::skip_whitespace() {
-        while(std::isspace(m_curr_char) && m_curr_char != '\0') advance();
-    }
-    std::string Interpreter::integer() {
-        std::string result;
-        while(std::isdigit(m_curr_char) && m_curr_char != '\0') {
-            result+=m_curr_char;
-            advance();
-        }
-        return result;
-    }
-
     //UPDATE VALUES
-    void Interpreter::advance() {
-        m_pos++;
-        if(m_pos > m_text.length()) {
-            m_curr_char = '\0';
-        }
-        else {
-            m_curr_char = m_text[m_pos];
-        }
-    }
     void Interpreter::eat(TokenType type) {
         if(m_current_token.type == type) {
-            m_current_token = next_token();
+            m_current_token = m_lexer.get_next_token();
+        } else {
+            Error::throw_error(ERR_PARSING);
         }
-    }
-
-    //LEXER
-    Token Interpreter::next_token() {
-        while(m_curr_char != '\0') {
-            if(std::isdigit(m_curr_char)) {
-                return {TokenType::INTEGER, integer()};
-            }
-            if(std::isspace(m_curr_char)) {
-                skip_whitespace();
-                continue;
-            }
-            if(m_curr_char == '+') {
-                advance();
-                return {TokenType::PLUS, "+"};
-            }
-            if(m_curr_char == '-') {
-                advance();
-                return {TokenType::MINUS, "-"};
-            }
-            if(m_curr_char == '*') {
-                advance();
-                return {TokenType::MULTIP, "*"};
-            }
-            if(m_curr_char == '/') {
-                advance();
-                return {TokenType::DIVID, "/"};
-            }
-            error();
-
-        }
-        return {TokenType::END, "END"};
     }
 
     //OPERATIONS
-    std::string Interpreter::term() {
+    std::string Interpreter::factor() {
         Token token = m_current_token;
         eat(TokenType::INTEGER);
         return token.value;
     }
+    std::string Interpreter::term() {
+
+        int result = std::stoi(factor());
+
+        while(m_current_token.type == TokenType::MULTIP || m_current_token.type == TokenType::DIVID) {
+            Token token = m_current_token;
+            if(token.type == TokenType::MULTIP) {
+                eat(TokenType::MULTIP);
+                result *= std::stoi(factor());
+            }
+            else if(token.type == TokenType::DIVID) {
+                eat(TokenType::DIVID);
+                int temp = std::stoi(factor());
+                if(temp == 0) {
+                    Error::throw_error(ErrorTypes::ERR_DIVIDE_BY_ZERO);
+                }
+                else {
+                    result /= temp;
+                }
+            }
+        }
+
+        return std::to_string(result);
+    }
+
 
     //INTERPRETER
     std::string Interpreter::expr() {
-        m_current_token = next_token();
+        m_current_token = m_lexer.get_next_token();
+
         int result = std::stoi(term());
-        while(m_current_token.type == TokenType::PLUS || m_current_token.type == TokenType::MINUS) {
+
+        while(m_current_token.type == TokenType::PLUS
+            || m_current_token.type == TokenType::MINUS) {
             Token token = m_current_token;
             if(token.type == TokenType::PLUS) {
                 eat(TokenType::PLUS);
@@ -94,8 +71,5 @@ namespace interpreter {
         return std::to_string(result);
     }
 
-    void Interpreter::error() {
-        throw std::runtime_error("Parsing error");
-    }
 
 }

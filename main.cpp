@@ -9,12 +9,15 @@ int main() {
             std::string text;
             std::cin >> text;
             if(text.empty()) continue;
-            interpreter::Interpreter interpreter(text);
+
+            interpreter::Lexer lexer(text);
+            interpreter::Interpreter interpreter(lexer);
+
             std::string res = interpreter.expr();
             std::cout << res << std::endl;
         }
-        catch(std::exception e) {
-            std::cout << "Error:" << e.what() << std::endl;
+        catch(const std::exception& e) {
+            std::cout << "Error: " << e.what() << std::endl;
         }
     }
 }

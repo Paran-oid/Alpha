@@ -3,8 +3,17 @@ project(Alpha)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(Alpha main.cpp
+##directories to include
+include_directories(${CMAKE_SOURCE_DIR}/Error
+                    ${CMAKE_SOURCE_DIR}/Interpreter
+                    ${CMAKE_SOURCE_DIR}/Token)
+
+##source files
+set(SOURCES
+        main.cpp
         Interpreter/Interpreter.cpp
-        Interpreter/Interpreter.h
-        Token/TokenType.h
-        Token/Token.h)
+        Error/Error.cpp
+        Lexer/Lexer.cpp
+        Lexer/Lexer.h)
+
+add_executable(Alpha ${SOURCES})
