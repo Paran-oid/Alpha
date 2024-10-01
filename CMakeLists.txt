@@ -13,6 +13,7 @@ include_directories(${CMAKE_SOURCE_DIR}/Error
 set(SOURCES
         main.cpp
         Interpreter/Interpreter.cpp
-        Error/Error.cpp)
+        Error/Error.cpp
+        Lexer/Lexer.cpp)
 
 add_executable(Alpha ${SOURCES})

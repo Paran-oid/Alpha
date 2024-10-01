@@ -11,7 +11,7 @@
 namespace interpreter {
     class Lexer {
     public:
-        Lexer(const std::string text):m_text{text}, m_pos{0}, m_curr_char{text[0]}{}
+        Lexer(const std::string& text):m_text{text}, m_pos{0}, m_curr_char{text[0]}{}
 
         Token get_next_token();
         void advance();
