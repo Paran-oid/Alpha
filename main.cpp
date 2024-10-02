@@ -1,24 +1,27 @@
 #include <iostream>
 
 #include "Interpreter/Interpreter.h"
+#include "Lexer/Lexer.h"
 
 int main() {
-    while(true) {
-        try {
+    try {
+        while(true) {
             std::cout << "alpha>";
-            std::string text;
-            std::cin >> text;
-            if(text.empty()) continue;
 
-            interpreter::Lexer lexer(text);
-            interpreter::Interpreter interpreter(lexer);
+            std::string input;
+            std::getline(std::cin, input);
+            if(input.empty()) continue;
+            if(input == "exit") break;
 
-            std::string res = interpreter.expr();
-            std::cout << res << std::endl;
+            Lexer lexer(input);
+            Interpreter interpreter(lexer);
+            std::string result = interpreter.expr();
+
+            std::cout << result << std::endl;
         }
-        catch(const std::exception& e) {
-            std::cout << "Error: " << e.what() << std::endl;
-        }
+        std::cout << "alpha exited with exit code 0";
+        return 0;
+    } catch (std::exception e) {
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
-

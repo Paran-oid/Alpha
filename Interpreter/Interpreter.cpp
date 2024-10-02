@@ -1,81 +1,69 @@
 //
-// Created by aziz on 9/30/24.
+// Created by aziz on 10/2/24.
 //
 
 #include "Interpreter.h"
 
-#include <iostream>
+#include <complex>
 
-#include "Error.h"
+#include "../Error/Error.h"
 
-namespace interpreter {
-    //UPDATE VALUES
-    void Interpreter::eat(TokenType type) {
-        if(m_current_token.type == type) {
-            m_current_token = m_lexer.get_next_token();
-        } else {
-            Error::throw_error(ERR_PARSING);
+void Interpreter::eat(Token::Type type) {
+    if(m_curr_token.type() == type) {
+        m_curr_token = m_lexer.next_token();
+    }
+    else {
+        Error::throw_error(Error::PARSE);
+    }
+}
+
+
+
+auto Interpreter::factor() {
+    if(m_curr_token.type() == Token::INTEGER) {
+        Token curr_token = m_curr_token;
+        eat(Token::Type::INTEGER);
+        return curr_token.value();
+    }
+    else if(m_curr_token.type() == Token::LPAREN) {
+        eat(Token::Type::LPAREN);
+        auto result = expr();
+        eat(Token::Type::RPAREN);
+        return result;
+    }
+}
+
+auto Interpreter::term() {
+    auto result = std::stoi(factor());
+    while(m_curr_token.type() == Token::Type::DIV || m_curr_token.type() == Token::Type::MULT) {
+        Token token = m_curr_token;
+        if(token.type() == Token::MULT) {
+            eat(Token::MULT);
+            result *= std::stoi(factor());
+        }
+        if(token.type() == Token::DIV) {
+            eat(Token::DIV);
+            result /= std::stoi(factor());
+        }
+    }
+    return std::to_string(result);
+}
+
+
+std::string Interpreter::expr() {
+    auto result = std::stoi(term());
+
+    while(m_curr_token.type() == Token::PLUS || m_curr_token.type() == Token::MINUS) {
+        Token token = m_curr_token;
+        if(token.type() == Token::PLUS) {
+            eat(Token::PLUS);
+            result += std::stoi(term());
+        }
+        if(token.type() == Token::MINUS) {
+            eat(Token::MINUS);
+            result -= std::stoi(term());
         }
     }
 
-    //OPERATIONS
-    std::string Interpreter::factor() {
-        Token token = m_current_token;
-        if(m_current_token.type == TokenType::INTEGER) {
-            eat(TokenType::INTEGER);
-            return token.value;
-        }
-        else if(m_current_token.type == TokenType::LPAREN) {
-            eat(TokenType::LPAREN);
-            std::string res = expr();
-            eat(TokenType::RPAREN);
-            return res;
-        }
-    }
-    std::string Interpreter::term() {
-
-        int result = std::stoi(factor());
-
-        while(m_current_token.type == TokenType::MULTIP || m_current_token.type == TokenType::DIVID) {
-            Token token = m_current_token;
-            if(token.type == TokenType::MULTIP) {
-                eat(TokenType::MULTIP);
-                result *= std::stoi(factor());
-            }
-            else if(token.type == TokenType::DIVID) {
-                eat(TokenType::DIVID);
-                int temp = std::stoi(factor());
-                if(temp == 0) {
-                    Error::throw_error(ErrorTypes::ERR_DIVIDE_BY_ZERO);
-                }
-                else {
-                    result /= temp;
-                }
-            }
-        }
-
-        return std::to_string(result);
-    }
-
-
-    //INTERPRETER
-    std::string Interpreter::expr() {
-        int result = std::stoi(term());
-
-        while(m_current_token.type == TokenType::PLUS
-            || m_current_token.type == TokenType::MINUS) {
-            Token token = m_current_token;
-            if(token.type == TokenType::PLUS) {
-                eat(TokenType::PLUS);
-                result += std::stoi(term());
-            }
-            else if(token.type == TokenType::MINUS) {
-                eat(TokenType::MINUS);
-                result -= std::stoi(term());
-            }
-        }
-        return std::to_string(result);
-    }
-
-
+    return std::to_string(result);
 }

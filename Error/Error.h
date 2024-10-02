@@ -1,19 +1,19 @@
 //
-// Created by aziz on 10/1/24.
+// Created by aziz on 10/2/24.
 //
 
 #ifndef ERROR_H
 #define ERROR_H
 
 
-enum ErrorTypes {
-    ERR_PARSING,
-    ERR_DIVIDE_BY_ZERO
-};
 
 class Error {
 public:
-    static void throw_error(ErrorTypes error_type);
+    enum Type {
+        PARSE,
+        DIVIDE_BY_ZERO
+    };
+    static void throw_error(Type error_type);
 };
 
 

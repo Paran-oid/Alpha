@@ -1,33 +1,29 @@
 //
-// Created by aziz on 9/30/24.
+// Created by aziz on 10/2/24.
 //
 
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
-#include <string>
+#include "../Lexer/Lexer.h"
 
-#include "Token.h"
-#include "Lexer.h"
 
-namespace interpreter {
-    class Interpreter {
-    public:
-        explicit Interpreter(interpreter::Lexer& lexer): m_lexer{lexer}{
-            m_current_token = m_lexer.get_next_token();
-        }
+class Interpreter {
+public:
+    Interpreter(Lexer& lexer): m_lexer{lexer} {
+        m_curr_token = m_lexer.next_token();
+    }
 
-        std::string expr();
+    std::string expr();
+    void eat(Token::Type);
 
-        std::string term();
-        std::string factor();
+    auto factor();
+    auto term();
 
-        void eat(TokenType type);
+private:
+    Lexer m_lexer;
+    Token m_curr_token{Token::Type::END, "END"};
+};
 
-    private:
-        Lexer m_lexer;
-        Token m_current_token{};
-    };
 
-}
 
 #endif //INTERPRETER_H
