@@ -23,9 +23,14 @@ like in c++
 
 print(arg);
 
+
+### miscellaneous
 - display my name
 
 creator_name();
+
+-display my iq
+
 creator_iq();
 
 ### tutorial's link
