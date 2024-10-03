@@ -4,21 +4,21 @@
 
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
-#include "../Lexer/Lexer.h"
+
+#include "Lexer.h"
 
 
-class Interpreter {
+class Interpreter{
 public:
     Interpreter(Lexer& lexer): m_lexer{lexer} {
         m_curr_token = m_lexer.next_token();
     }
 
     std::string expr();
-    void eat(Token::Type);
-
-    auto factor();
     auto term();
+    auto factor();
 
+    void eat(Token::Type);
 private:
     Lexer m_lexer;
     Token m_curr_token{Token::Type::END, "END"};

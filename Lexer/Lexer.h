@@ -6,7 +6,7 @@
 #define LEXER_H
 #include <string>
 
-#include "../Token/Token.h"
+#include "Token.h"
 
 
 class Lexer {
@@ -15,11 +15,10 @@ public:
     {}
 
     Token next_token();
-
-    void is_whitespace();
     std::string integer();
-
+    void is_whitespace();
     void advance();
+
 
 private:
     int m_pos;

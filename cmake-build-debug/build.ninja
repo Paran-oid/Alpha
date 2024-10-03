@@ -52,28 +52,28 @@ build cmake_object_order_depends_target_Alpha: phony || .
 build CMakeFiles/Alpha.dir/main.cpp.o: CXX_COMPILER__Alpha_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/main.cpp || cmake_object_order_depends_target_Alpha
   DEP_FILE = CMakeFiles/Alpha.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer"
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer/AST"
   OBJECT_DIR = CMakeFiles/Alpha.dir
   OBJECT_FILE_DIR = CMakeFiles/Alpha.dir
 
 build CMakeFiles/Alpha.dir/Interpreter/Interpreter.cpp.o: CXX_COMPILER__Alpha_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/Interpreter/Interpreter.cpp || cmake_object_order_depends_target_Alpha
   DEP_FILE = CMakeFiles/Alpha.dir/Interpreter/Interpreter.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer"
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer/AST"
   OBJECT_DIR = CMakeFiles/Alpha.dir
   OBJECT_FILE_DIR = CMakeFiles/Alpha.dir/Interpreter
 
 build CMakeFiles/Alpha.dir/Error/Error.cpp.o: CXX_COMPILER__Alpha_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/Error/Error.cpp || cmake_object_order_depends_target_Alpha
   DEP_FILE = CMakeFiles/Alpha.dir/Error/Error.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer"
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer/AST"
   OBJECT_DIR = CMakeFiles/Alpha.dir
   OBJECT_FILE_DIR = CMakeFiles/Alpha.dir/Error
 
 build CMakeFiles/Alpha.dir/Lexer/Lexer.cpp.o: CXX_COMPILER__Alpha_unscanned_Debug /home/aziz/Documents/Programming/Projects/alpha$ interpreter/Lexer/Lexer.cpp || cmake_object_order_depends_target_Alpha
   DEP_FILE = CMakeFiles/Alpha.dir/Lexer/Lexer.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer"
+  INCLUDES = -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Error" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Interpreter" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Token" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer" -I"/home/aziz/Documents/Programming/Projects/alpha interpreter/Lexer/AST"
   OBJECT_DIR = CMakeFiles/Alpha.dir
   OBJECT_FILE_DIR = CMakeFiles/Alpha.dir/Lexer
 

@@ -4,7 +4,7 @@
 
 #include "Lexer.h"
 
-#include "../Error/Error.h"
+#include "Error.h"
 
 void Lexer::advance() {
     m_pos++;
@@ -73,5 +73,3 @@ Token Lexer::next_token() {
     }
     return Token{Token::Type::END, "END"};
 }
-
-

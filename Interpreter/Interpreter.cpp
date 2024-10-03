@@ -6,7 +6,7 @@
 
 #include <complex>
 
-#include "../Error/Error.h"
+#include "Error.h"
 
 void Interpreter::eat(Token::Type type) {
     if(m_curr_token.type() == type) {
@@ -27,9 +27,9 @@ auto Interpreter::factor() {
     }
     else if(m_curr_token.type() == Token::LPAREN) {
         eat(Token::Type::LPAREN);
-        auto result = expr();
+        auto node = expr();
         eat(Token::Type::RPAREN);
-        return result;
+        return node;
     }
 }
 
@@ -51,19 +51,18 @@ auto Interpreter::term() {
 
 
 std::string Interpreter::expr() {
-    auto result = std::stoi(term());
+    auto node = std::stoi(term());
 
     while(m_curr_token.type() == Token::PLUS || m_curr_token.type() == Token::MINUS) {
         Token token = m_curr_token;
         if(token.type() == Token::PLUS) {
             eat(Token::PLUS);
-            result += std::stoi(term());
-        }
-        if(token.type() == Token::MINUS) {
+            node += std::stoi(term());
+        } else if(token.type() == Token::MINUS) {
             eat(Token::MINUS);
-            result -= std::stoi(term());
+            node -= std::stoi(term());
         }
     }
 
-    return std::to_string(result);
+    return std::to_string(node);
 }
