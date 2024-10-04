@@ -1,29 +1,27 @@
 //
-// Created by aziz on 10/2/24.
+// Created by aziz on 10/4/24.
 //
 
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
+#include <Parser.h>
+#include <string>
 
-#include "Lexer.h"
+class Num;
+class BinOp;
 
-
-class Interpreter{
+class Interpreter {
 public:
-    Interpreter(Lexer& lexer): m_lexer{lexer} {
-        m_curr_token = m_lexer.next_token();
-    }
+    Interpreter(const Parser& parser) : m_parser{parser} {}
 
-    std::string expr();
-    auto term();
-    auto factor();
+    std::string interpret();
 
-    void eat(Token::Type);
+    int visit(Expression* node);
+    int visit_BinOp(BinOp* node);
+    int visit_Num(Num* node);
+
 private:
-    Lexer m_lexer;
-    Token m_curr_token{Token::Type::END, "END"};
+    Parser m_parser;
 };
-
-
 
 #endif //INTERPRETER_H

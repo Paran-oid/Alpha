@@ -1,68 +1,41 @@
 //
-// Created by aziz on 10/2/24.
+// Created by aziz on 10/4/24.
 //
 
 #include "Interpreter.h"
 
-#include <complex>
+#include <stdexcept>
+#include "../Parser/Parser.h"
+#include "../Expression/Expression.h"
 
-#include "Error.h"
 
-void Interpreter::eat(Token::Type type) {
-    if(m_curr_token.type() == type) {
-        m_curr_token = m_lexer.next_token();
-    }
-    else {
-        Error::throw_error(Error::PARSE);
-    }
+int Interpreter::visit(Expression* node) {
+    return node->accept(*this);
 }
 
-
-
-auto Interpreter::factor() {
-    if(m_curr_token.type() == Token::INTEGER) {
-        Token curr_token = m_curr_token;
-        eat(Token::Type::INTEGER);
-        return curr_token.value();
+int Interpreter::visit_BinOp(BinOp* node) {
+    if (node->op().type() == Token::PLUS) {
+        return visit(node->left()) + visit(node->right());
+    } else if (node->op().type() == Token::MINUS) {
+        return visit(node->left()) - visit(node->right());
+    } else if (node->op().type() == Token::MULT) {
+        return visit(node->left()) * visit(node->right());
+    } else if (node->op().type() == Token::DIV) {
+        int right_val = visit(node->right());
+        if (right_val == 0) {
+            throw std::runtime_error("Division by zero error");
+        }
+        return visit(node->left()) / right_val;
     }
-    else if(m_curr_token.type() == Token::LPAREN) {
-        eat(Token::Type::LPAREN);
-        auto node = expr();
-        eat(Token::Type::RPAREN);
-        return node;
-    }
+
+    throw std::runtime_error("Unknown operator");
 }
 
-auto Interpreter::term() {
-    auto result = std::stoi(factor());
-    while(m_curr_token.type() == Token::Type::DIV || m_curr_token.type() == Token::Type::MULT) {
-        Token token = m_curr_token;
-        if(token.type() == Token::MULT) {
-            eat(Token::MULT);
-            result *= std::stoi(factor());
-        }
-        if(token.type() == Token::DIV) {
-            eat(Token::DIV);
-            result /= std::stoi(factor());
-        }
-    }
-    return std::to_string(result);
+int Interpreter::visit_Num(Num* node) {
+    return std::stoi(node->value());
 }
 
-
-std::string Interpreter::expr() {
-    auto node = std::stoi(term());
-
-    while(m_curr_token.type() == Token::PLUS || m_curr_token.type() == Token::MINUS) {
-        Token token = m_curr_token;
-        if(token.type() == Token::PLUS) {
-            eat(Token::PLUS);
-            node += std::stoi(term());
-        } else if(token.type() == Token::MINUS) {
-            eat(Token::MINUS);
-            node -= std::stoi(term());
-        }
-    }
-
-    return std::to_string(node);
+std::string Interpreter::interpret() {
+    Expression* tree = m_parser.parse();
+    return std::to_string(visit(tree));
 }

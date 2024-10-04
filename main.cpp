@@ -1,6 +1,7 @@
+#include <Interpreter.h>
 #include <iostream>
 
-#include "Interpreter/Interpreter.h"
+#include "Parser/Parser.h"
 #include "Lexer/Lexer.h"
 
 int main() {
@@ -14,9 +15,9 @@ int main() {
             if(input == "exit") break;
 
             Lexer lexer(input);
-            Interpreter interpreter(lexer);
-            std::string result = interpreter.expr();
-
+            Parser parser(lexer);
+            Interpreter interpreter(parser);
+            std::string result = interpreter.interpret();
             std::cout << result << std::endl;
         }
         std::cout << "alpha exited with exit code 0";
