@@ -5,8 +5,9 @@
 #include "Interpreter.h"
 
 #include <stdexcept>
-#include "../Parser/Parser.h"
-#include "../Expression/Expression.h"
+#include "Parser.h"
+#include "Expression.h"
+#include <iostream>
 
 
 int Interpreter::visit(Expression* node) {

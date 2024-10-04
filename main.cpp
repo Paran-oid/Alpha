@@ -1,8 +1,8 @@
 #include <Interpreter.h>
 #include <iostream>
 
-#include "Parser/Parser.h"
-#include "Lexer/Lexer.h"
+#include "Parser.h"
+#include "Lexer.h"
 
 int main() {
     try {

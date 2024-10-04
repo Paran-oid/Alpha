@@ -6,7 +6,6 @@
 #define EXPRESSION_H
 
 #include <Interpreter.h>
-
 #include "Token.h"
 
 
@@ -32,6 +31,7 @@ public:
         return visitor.visit_BinOp(this);
     }
 
+
 private:
     Expression* m_left;
     Token m_op;
@@ -52,9 +52,11 @@ public:
     }
 
 
+
 private:
     Token m_token;
     std::string m_value;
 };
+
 
 #endif //EXPRESSION_H
