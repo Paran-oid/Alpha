@@ -1,37 +1,74 @@
-### declaring a variable ###
+# Alpha Terminal Calculator
 
-- types:
+Alpha is a simple, lightweight terminal calculator designed for quick arithmetic and basic mathematical operations from your command line. No frills, no programming language—just calculations.
 
-num
-str
-bool
+---
 
-- variable:
+## Features
 
-[type] [name] = [value];
---> semi-colon is a must
+- **Basic arithmetic:** Addition, subtraction, multiplication, division
+- **Parentheses:** Supports order of operations
+- **Decimal numbers:** Handles floating-point math
+- **Simple interface:** Enter expressions, get answers
+- **No dependencies:** Works out of the box
 
-- comparison and arithmetic operations:
+---
 
-like in c++
+## Usage
 
+Run Alpha from your terminal and start typing expressions:
 
+```sh
+$ alpha
+> 2 + 2
+4
+> 3 * (7 + 1)
+24
+> 10 / 3
+3.3333333
+> exit
+```
 
-### using the console ###
+---
 
-- display a variable
+## Installation
 
-print(arg);
+Clone the repository and run:
 
+```sh
+git clone https://github.com/Paran-oid/Alpha.git
+mkdir build
+cd build
+cmake ..
+make
+# If compiled, e.g. for C/C++
+make
+./Alpha
+```
+---
 
-### miscellaneous
-- display my name
+## Supported Operations
 
-creator_name();
+- Addition (`+`)
+- Subtraction (`-`)
+- Multiplication (`*`)
+- Division (`/`)
+- Grouping (`()`)
 
--display my iq
+---
 
-creator_iq();
+## Contributing
 
-### tutorial's link
-https://ruslanspivak.com/lsbasi-part1/
+Feel free to open issues or submit pull requests for new features, bug fixes, or documentation improvements!
+
+---
+
+## License
+
+[MIT](LICENSE)
+
+---
+
+## Author
+
+Made with ❤️ by [Paran-oid](https://github.com/Paran-oid)
