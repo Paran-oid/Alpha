@@ -1,6 +1,6 @@
 # Alpha Terminal Calculator
 
-Alpha is a simple, lightweight terminal calculator designed for quick arithmetic and basic mathematical operations from your command line. No frills, no programming language—just calculations.
+Alpha is a simple, lightweight terminal calculator designed for quick arithmetic and basic mathematical operations from your command line.
 
 ---
 
